@@ -9,7 +9,6 @@ class Realizacion extends Model
 {
     use HasFactory;
 
-    protected $table = "realizaciones";
 
     protected $fillable = [
         'nombre',

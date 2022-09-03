@@ -49,8 +49,8 @@ class RealizacionController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
-        $realizacione = new Realizacion($input);
-        $realizacione->save();
+        $realización = new Realizacion($input);
+        $realización->save();
 
         return redirect()->route('realizaciones.index');
     }
@@ -58,10 +58,10 @@ class RealizacionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Realizacion  $realizacion
+     * @param  \App\Models\Realizacion  $realización
      * @return \Illuminate\Http\Response
      */
-    public function show(Realizacion $realizacion)
+    public function show(Realizacion $realización)
     {
         //
     }
@@ -69,37 +69,37 @@ class RealizacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Realizacion  $realizacion
+     * @param  \App\Models\Realizacion  $realización
      * @return \Illuminate\Http\Response
      */
-    public function edit(Realizacion $realizacione)
+    public function edit(Realizacion $realización)
     {
-        return view('admin.realizaciones.edit', compact('realizacione'));
+        return view('admin.realizaciones.edit', compact('realización'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Realizacion  $realizacion
+     * @param  \App\Models\Realizacion  $realización
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Realizacion $realizacione)
+    public function update(Request $request, Realizacion $realización)
     {
-        $realizacione->nombre = $request->nombre;
-        $realizacione->save();
+        $realización->nombre = $request->nombre;
+        $realización->save();
         return redirect()->route('realizaciones.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Realizacion  $realizacion
+     * @param  \App\Models\Realizacion  $realización
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Realizacion $realizacione)
+    public function destroy(Realizacion $realización)
     {
-        $realizacione->delete();
+        $realización->delete();
         return redirect()->route('realizaciones.index');
     }
 }

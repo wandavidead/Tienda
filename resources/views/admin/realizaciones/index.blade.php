@@ -24,7 +24,7 @@
                             <td>{{ $realizacion->id }}</td>
                             <td>{{ $realizacion->nombre }}</td>
                             <td>{{ $realizacion->valor }}</td>
-                            <td><a href="{{ route('realizaciones.edit', $realizacion) }}" class="btn btn-primary">Editar</a></td>
+                            <td><a href="{{ route('realizaciones.edit', $realizacion->id) }}" class="btn btn-primary">Editar</a></td>
                             <td>
                                 <form action="{{ route('realizaciones.destroy', $realizacion) }}" method="POST">
                                     @method('delete')
