@@ -85,8 +85,9 @@
                                 <i class="fas fa-fw fa-people-arrows"></i>
                             </div>
                         </x-slot>
+                        
                         @foreach ($subcategorias as $subcategoria)
-                            <option value="{{ $subcategoria->id }}">
+                            <option value="{{ $subcategoria->id }}" @foreach($producto->subcategorias as $producto->subcategoria) @if (!is_null($producto->subcategoria) && $subcategoria->id == $producto->subcategoria->id) selected @endif  @endforeach>
                                 {{ $subcategoria->nombre }}</option>
                         @endforeach
                     </x-adminlte-select>

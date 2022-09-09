@@ -89,7 +89,8 @@ class ProductoController extends Controller
     {
         $impuestos = Impuesto::all();
         $proveedores = Proveedor::all();
-        return view('admin.productos.edit', compact('producto', 'impuestos', 'proveedores'));
+        $subcategorias = Subcategoria::all();
+        return view('admin.productos.edit', compact('producto', 'impuestos', 'proveedores','subcategorias'));
     }
 
     /**
@@ -109,7 +110,7 @@ class ProductoController extends Controller
         } else {
             $precio_impuesto = $precio;
         }
-
+        $array = $request->only('subcategorias');
         $producto->nombre = $request->nombre;
         $producto->cantidad = $request->cantidad;
         $producto->precio = $request->precio;
@@ -118,6 +119,9 @@ class ProductoController extends Controller
         $producto->precio_impuesto = $precio_impuesto;
         $producto->proveedor_id = $request->proveedor_id;
         $producto->save();
+        if ($array) {
+            $producto->subcategorias()->sync($array['subcategorias']);
+        }
         return redirect()->route('productos.index');
     }
 
