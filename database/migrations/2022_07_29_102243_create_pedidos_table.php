@@ -19,14 +19,13 @@ return new class extends Migration
             $table->decimal('cuota',8,2);
             $table->decimal('precio_total',8,2);
             $table->date('fecha_pedido');
-            $table->unsignedBigInteger('impuesto_id')->nullable();
-            $table->foreign('impuesto_id')->references('id')->on('impuestos')->onDelete('set null');
-            $table->unsignedBigInteger('pago_id')->nullable();
-            $table->foreign('pago_id')->references('id')->on('pagos')->onDelete('set null');
-            $table->unsignedBigInteger('realizacion_id')->nullable();
-            $table->foreign('realizacion_id')->references('id')->on('realizaciones')->onDelete('set null');
+            $table->decimal('impuesto',3,1);
+            $table->string('pago',45);
+            $table->string('estado',45);
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
             $table->timestamps();
         });
     }

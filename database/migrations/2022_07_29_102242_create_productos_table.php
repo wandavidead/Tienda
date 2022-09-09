@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('cantidad');
             $table->decimal('precio',8,2);
             $table->binary('imagen')->nullable();
-            $table->unsignedBigInteger('impuesto_id')->nullable();
-            $table->foreign('impuesto_id')->references('id')->on('impuestos')->onDelete('set null');
+            $table->decimal('impuesto',3,1);
+            $table->decimal('precio_impuesto',8,2);
             $table->unsignedBigInteger('proveedor_id')->nullable();
             $table->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('set null');
             $table->timestamps();

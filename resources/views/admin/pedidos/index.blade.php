@@ -33,9 +33,9 @@
                             <td>{{ $pedido->cuota }}</td>
                             <td>{{ $pedido->precio_total }}</td>
                             <td>{{ $pedido->fecha_pedido }}</td>
-                            <td>{{ $pedido->impuesto->valor }}%</td>
-                            <td>{{ $pedido->pago->nombre }}</td>
-                            <td>{{ $pedido->realizacion->nombre }}</td>
+                            <td>{{ $pedido->impuesto }}%</td>
+                            <td>{{ $pedido->pago }}</td>
+                            <td>{{ $pedido->proceso }}</td>
                             <td>{{ $pedido->user->usuario }}</td>
 {{--                             <td><a href="{{ route('pedidos.edit', $pedido) }}" class="btn btn-primary">Editar</a></td>
                             <td>

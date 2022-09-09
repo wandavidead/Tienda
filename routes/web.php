@@ -9,7 +9,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\RealizacionController;
+use App\Http\Controllers\ProcesoController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\UserController;
 
@@ -54,6 +54,6 @@ Route::resource('adminpanel/pagos', PagoController::class);
 Route::resource('adminpanel/pedidos', PedidoController::class);
 Route::resource('adminpanel/productos', ProductoController::class);
 Route::resource('adminpanel/proveedores', ProveedorController::class);
-Route::resource('adminpanel/realizaciones', RealizacionController::class);
+Route::resource('adminpanel/procesos', ProcesoController::class);
 Route::resource('adminpanel/subcategorias', SubcategoriaController::class);
 Route::resource('adminpanel/users', UserController::class);

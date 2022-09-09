@@ -18,6 +18,7 @@
                         <th>CANTIDAD</th>
                         <th>PRECIO</th>
                         <th>IMPUESTO</th>
+                        <th>PRECIO CON IMPUESTO</th>
                         <th>PROVEEDOR</th>
                         <th>EDITAR</th>
                         <th>ELIMINAR</th>
@@ -34,9 +35,15 @@
                                     No tiene Impuesto
                                 </td>
                             @else
-                            <td>{{ $producto->impuesto->valor }}%</td>
+                            <td>{{ $producto->impuesto }}%</td>
                             @endif
-                            
+                            @if (is_null($producto->precio_impuesto))
+                                <td>
+                                    No se puede calcular
+                                </td>
+                            @else
+                            <td>{{ $producto->precio_impuesto }}</td>
+                            @endif
                             @if (is_null($producto->proveedor))
                                 <td>
                                     No tiene Proveedor
@@ -44,7 +51,6 @@
                             @else
                             <td>{{ $producto->proveedor->nombre_Fiscal }}</td>
                             @endif
-                           
                             <td><a href="{{ route('productos.edit', $producto) }}" class="btn btn-primary">Editar</a></td>
                             <td>
                                 <form action="{{ route('productos.destroy', $producto) }}" method="POST">

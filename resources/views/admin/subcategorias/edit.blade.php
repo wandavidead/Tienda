@@ -34,7 +34,7 @@
                         </x-slot>
                         <option value="">Selecciona una categoria</option>
                         @foreach ($categorias as $categoria)
-                            <option value="{{ $categoria->id }}" @if (!is_null($subcategoria->categoria) && $categoria->id == $subcategoria->categoria ) selected  @endif>
+                            <option value="{{ $categoria->id }}" @if (!is_null($subcategoria->categoria) && $categoria->id == $subcategoria->categoria->id ) selected  @endif>
                                 {{ $categoria->nombre }}</option>
                         @endforeach
                     </x-adminlte-select2>

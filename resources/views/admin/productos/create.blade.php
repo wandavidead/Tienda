@@ -34,16 +34,16 @@
                 {{-- Segunda fila --}}
                 <div class="row">
                     {{-- Seleccion de impuestos con select2 --}}
-                    <x-adminlte-select2 name="impuesto_id" label="Impuestos" fgroup-class="col-md-4"
+                    <x-adminlte-select2 name="impuesto" label="Impuestos" fgroup-class="col-md-4"
                         label-class="text-lightblue" data-placeholder="Selecciona un impuesto">
                         <x-slot name="prependSlot">
                             <div class="input-group-text bg-gradient-info">
                                 <i class="fas fa-fw fa-percent"></i>
                             </div>
                         </x-slot>
-                        <option value="">Selecciona un impuesto</option>
+                        <option value="" selected>Selecciona un impuesto</option>
                         @foreach ($impuestos as $impuesto)
-                            <option value="{{ $impuesto->id }}" @if ($impuesto->id == $productos->impuesto) selected @endif>
+                            <option value="{{ $impuesto->valor }}">
                                 {{ $impuesto->nombre }} - {{ $impuesto->valor }}%</option>
                         @endforeach
                     </x-adminlte-select2>
@@ -55,9 +55,9 @@
                                 <i class="fas fa-fw fa-people-arrows"></i>
                             </div>
                         </x-slot>
-                        <option value="">Selecciona a un proveedor</option>
+                        <option value="" selected>Selecciona a un proveedor</option>
                         @foreach ($proveedores as $proveedor)
-                            <option value="{{ $proveedor->id }}" @if ($proveedor->id == $productos->proveedor) selected @endif>
+                            <option value="{{ $proveedor->id }}">
                                 {{ $proveedor->nombre_Fiscal }}</option>
                         @endforeach
                     </x-adminlte-select2>
@@ -82,8 +82,8 @@
                             </div>
                         </x-slot>
                         @foreach ($subcategorias as $subcategoria)
-                        <option value="{{ $subcategoria->id }}">
-                            {{ $subcategoria->nombre }}</option>
+                            <option value="{{ $subcategoria->id }}">
+                                {{ $subcategoria->nombre }}</option>
                         @endforeach
                     </x-adminlte-select>
                 </div>

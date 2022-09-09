@@ -15,17 +15,13 @@ class Producto extends Model
         'descripcion',
         'cantidad',
         'precio',
-        'impuesto_id',
+        'impuesto',
+        'precio_impuesto',
         'proveedor_id',
     ];
 
 
     //Relaciones uno a muchos
-    public function impuesto()
-    {
-        return $this->belongsTo('App\Models\Impuesto');
-    }
-
     public function proveedor()
     {
         return $this->belongsTo('App\Models\Proveedor');

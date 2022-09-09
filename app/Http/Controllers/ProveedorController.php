@@ -61,9 +61,9 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proveedor $proveedore)
+    public function edit(Proveedor $proveedor)
     {
-        return view('admin.proveedores.edit', compact('proveedore'));
+        return view('admin.proveedores.edit', compact('proveedor'));
     }
 
     /**
@@ -73,15 +73,15 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proveedor $proveedore)
+    public function update(Request $request, Proveedor $proveedor)
     {
-        $proveedore->nombre_Fiscal = $request->nombre_Fiscal;
-        $proveedore->cif = $request->cif;
-        $proveedore->direccion = $request->direccion;
-        $proveedore->codigo_postal = $request->codigo_postal;
-        $proveedore->provincia = $request->provincia;
-        $proveedore->municipio = $request->municipio;
-        $proveedore->save();
+        $proveedor->nombre_Fiscal = $request->nombre_Fiscal;
+        $proveedor->cif = $request->cif;
+        $proveedor->direccion = $request->direccion;
+        $proveedor->codigo_postal = $request->codigo_postal;
+        $proveedor->provincia = $request->provincia;
+        $proveedor->municipio = $request->municipio;
+        $proveedor->save();
         return redirect()->route('proveedores.index');
     }
 
@@ -91,9 +91,9 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proveedor $proveedore)
+    public function destroy(Proveedor $proveedor)
     {
-        $proveedore->delete();
+        $proveedor->delete();
         return redirect()->route('proveedores.index');
     }
 }

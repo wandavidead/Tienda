@@ -10,18 +10,6 @@ class Pedido extends Model
     use HasFactory;
 
     //Relacion uno a muchos
-    public function impuesto(){
-        return $this->belongsTo('App\Models\Impuesto');
-    }
-
-    public function pago(){
-        return $this->belongsTo('App\Models\Pago');
-    }
-    
-    public function realizacion(){
-        return $this->belongsTo('App\Models\Realizacion');
-    }
-
     public function user(){
         return $this->belongsTo('App\Models\User');
     }

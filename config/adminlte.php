@@ -281,8 +281,8 @@ return [
                     'icon'    => 'fas fa-fw fa-percent',
                 ],
                 [
-                    'text' => 'Realizacion de pedidos',
-                    'route'  => 'realizaciones.index',
+                    'text' => 'Proceso de pedidos',
+                    'route'  => 'procesos.index',
                     'icon'    => 'fas fa-fw fa-dolly',
                 ],
                 [

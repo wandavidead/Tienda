@@ -46,10 +46,25 @@ class ProductoController extends Controller
     {
         $array = $request->only('subcategorias');
         $input = $request->except('subcategorias_id');
+        $impuesto = $request->impuesto;
+        $precio = $request->precio;
+
+        if (!is_null($impuesto)) {
+            $precio_impuesto = calcularporcentajeproducto($impuesto, $precio);
+        } else {
+            $precio_impuesto = $precio;
+        }
+
+        $input += array(
+            "precio_impuesto" => $precio_impuesto
+        );
+
         $producto = new Producto($input);
         $producto->save();
-        
-        $producto->subcategorias()->attach($array['subcategorias']);
+
+        if ($array) {
+            $producto->subcategorias()->attach($array['subcategorias']);
+        }
         return redirect()->route('productos.index');
     }
 
@@ -86,11 +101,21 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
+        $impuesto = $request->impuesto;
+        $precio = $request->precio;
+
+        if (!is_null($impuesto)) {
+            $precio_impuesto = calcularporcentajeproducto($impuesto, $precio);
+        } else {
+            $precio_impuesto = $precio;
+        }
+
         $producto->nombre = $request->nombre;
         $producto->cantidad = $request->cantidad;
         $producto->precio = $request->precio;
         $producto->descripcion = $request->descripcion;
-        $producto->impuesto_id = $request->impuesto_id;
+        $producto->impuesto = $request->impuesto;
+        $producto->precio_impuesto = $precio_impuesto;
         $producto->proveedor_id = $request->proveedor_id;
         $producto->save();
         return redirect()->route('productos.index');

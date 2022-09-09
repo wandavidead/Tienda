@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1>NUEVA REALIZACION</h1>
+    <h1>NUEVO PROCESO</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('realizaciones.index') }}" class="btn btn-primary">VOLVER</a>
+            <a href="{{ route('procesos.index') }}" class="btn btn-primary">VOLVER</a>
         </div>
         {{-- Primera fila --}}
         <div class="card-body">
-            <form action="{{ route('realizaciones.store') }}" method="POST">
+            <form action="{{ route('procesos.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     {{-- input de nombre de categoria con select2 --}}

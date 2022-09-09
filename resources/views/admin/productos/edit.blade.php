@@ -17,7 +17,7 @@
                 <div class="row">
                     {{-- input de nombre de producto con select2 --}}
                     <x-adminlte-input name="nombre" label="Nombre" placeholder="Nombre" label-class="text-lightblue"
-                        fgroup-class="col-md-5" type="text" value=" {{$producto->nombre}}">
+                        fgroup-class="col-md-5" type="text" value=" {{ $producto->nombre }}">
                         <x-slot name="prependSlot">
                             <div class="input-group-text">
                                 <i class="fas fa-user text-lightblue"></i>
@@ -26,18 +26,18 @@
                     </x-adminlte-input>
                     {{-- input de cantidad en numero con select2 --}}
                     <x-adminlte-input type="number" min="0" name="cantidad" label="Cantidad" placeholder="Cantidad"
-                        label-class="text-lightblue" type="cantidad" fgroup-class="col-md-2" value="{{$producto->cantidad}}">
+                        label-class="text-lightblue" type="cantidad" fgroup-class="col-md-2"
+                        value="{{ $producto->cantidad }}">
                     </x-adminlte-input>
                     <x-adminlte-input type="number" step="any" min="0" name="precio" label="Precio"
-                        placeholder="Precio" label-class="text-lightblue" fgroup-class="col-md-2" value="{{$producto->precio}}">
+                        placeholder="Precio" label-class="text-lightblue" fgroup-class="col-md-2"
+                        value="{{ $producto->precio }}">
                     </x-adminlte-input>
                 </div>
-
-
                 {{-- Segunda fila --}}
                 <div class="row">
                     {{-- Seleccion de impuestos con select2 --}}
-                    <x-adminlte-select2 name="impuesto_id" label="Impuestos" fgroup-class="col-md-4"
+                    <x-adminlte-select2 name="impuesto" label="Impuestos" fgroup-class="col-md-4"
                         label-class="text-lightblue" data-placeholder="Selecciona un impuesto">
                         <x-slot name="prependSlot">
                             <div class="input-group-text bg-gradient-info">
@@ -46,7 +46,7 @@
                         </x-slot>
                         <option value="">Selecciona un impuesto</option>
                         @foreach ($impuestos as $impuesto)
-                            <option value="{{ $impuesto->id }}" @if (!is_null($producto->impuesto) && $impuesto->id == $producto->impuesto->id ) selected  @endif>
+                            <option value="{{ $impuesto->valor }}" @if (!is_null($producto->impuesto) && $impuesto->valor == $producto->impuesto) selected @endif>
                                 {{ $impuesto->nombre }} - {{ $impuesto->valor }}%</option>
                         @endforeach
                     </x-adminlte-select2>
@@ -60,7 +60,7 @@
                         </x-slot>
                         <option value="">Selecciona a un proveedor</option>
                         @foreach ($proveedores as $proveedor)
-                            <option value="{{ $proveedor->id }}" @if (!is_null($producto->proveedor) && $proveedor->id  == $producto->proveedor->id ) selected  @endif>
+                            <option value="{{ $proveedor->id }}" @if (!is_null($producto->proveedor) && $proveedor->id == $producto->proveedor->id) selected @endif>
                                 {{ $proveedor->nombre_Fiscal }}</option>
                         @endforeach
                     </x-adminlte-select2>
@@ -75,7 +75,7 @@
                                 <i class="fas fa-lg fa-file-alt text-lightblue"></i>
                             </div>
                         </x-slot>
-                        {{$producto->descripcion}}
+                        {{ $producto->descripcion }}
                     </x-adminlte-textarea>
                 </div>
                 <button type="submit" class="btn btn-success float-right">GUARDAR</button>
