@@ -77,9 +77,29 @@
                         </x-slot>
                         {{ $producto->descripcion }}
                     </x-adminlte-textarea>
+                    {{-- Seleccion multiple de subcategorias con select2 --}}
+                    <x-adminlte-select class="js-example-basic-multiple" name="subcategorias[]" label="Subcategorias"
+                        fgroup-class="col-md-4" label-class="text-lightblue" multiple="multiple">
+                        <x-slot name="prependSlot">
+                            <div class="input-group-text bg-gradient-info">
+                                <i class="fas fa-fw fa-people-arrows"></i>
+                            </div>
+                        </x-slot>
+                        @foreach ($subcategorias as $subcategoria)
+                            <option value="{{ $subcategoria->id }}">
+                                {{ $subcategoria->nombre }}</option>
+                        @endforeach
+                    </x-adminlte-select>
                 </div>
                 <button type="submit" class="btn btn-success float-right">GUARDAR</button>
             </form>
         </div>
     </div>
+@stop
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
 @stop
