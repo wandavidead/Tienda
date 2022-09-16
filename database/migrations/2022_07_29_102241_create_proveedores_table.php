@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_Fiscal',150);
             $table->string('cif',11);
-            $table->string('direccion',150);
-            $table->integer('codigo_postal');
-            $table->string('provincia',45);
-            $table->string('municipio',45);
+            $table->string('direccion',150)->nullable();
+            $table->integer('codigo_postal')->nullable();
+            $table->string('provincia',45)->nullable();
+            $table->string('municipio',45)->nullable();
             $table->timestamps();
         });
     }

@@ -37,10 +37,11 @@ class ProcesoController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
-        $proceso = new Proceso($input);
+        $validated = $request->validate([
+            'nombre' => 'required|unique:procesos|max:45|min:3',
+        ]);
+        $proceso = new Proceso($validated);
         $proceso->save();
-
         return redirect()->route('procesos.index');
     }
 
@@ -75,7 +76,10 @@ class ProcesoController extends Controller
      */
     public function update(Request $request, Proceso $proceso)
     {
-        $proceso->nombre = $request->nombre;
+        $validated = $request->validate([
+            'nombre' => 'required|unique:procesos|max:45|min:3',
+        ]);
+        $proceso->nombre = $validated['nombre'];
         $proceso->save();
         return redirect()->route('procesos.index');
     }

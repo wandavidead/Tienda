@@ -19,7 +19,7 @@ class HomeController extends Controller
         }
     }
 
-    public function adminpanel()
+    /* public function adminpanel()
     {
         $usertype = Auth::user()->usertype;
         if ($usertype == '1') {
@@ -27,5 +27,5 @@ class HomeController extends Controller
         } else{
             abort(404);
         }
-    }
+    } */
 }

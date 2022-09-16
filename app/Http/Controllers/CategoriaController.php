@@ -37,8 +37,10 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
-        $categoria = new Categoria($input);
+        $validated = $request->validate([
+            'nombre' => 'required|unique:categorias|max:45|min:3',
+        ]);
+        $categoria = new Categoria($validated);
         $categoria->save();
 
         return redirect()->route('categorias.index');
@@ -75,7 +77,11 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        $categoria->nombre = $request->nombre;
+        $validated = $request->validate([
+            'nombre' => 'required|unique:categorias|max:45|min:3',
+        ]);
+        
+        $categoria->nombre = $validated['nombre'];
         $categoria->save();
         return redirect()->route('categorias.index');
     }

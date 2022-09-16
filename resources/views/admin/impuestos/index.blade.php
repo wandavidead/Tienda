@@ -13,7 +13,6 @@
             <table id="impuestos" class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>TIPO DE IMPUESTO</th>
                         <th>VALOR</th>
                         <th>EDITAR</th>
@@ -22,7 +21,6 @@
                 <tbody>
                     @foreach ($impuestos as $impuesto)
                         <tr>
-                            <td>{{ $impuesto->id }}</td>
                             <td>{{ $impuesto->nombre }}</td>
                             <td>{{ $impuesto->valor }}%</td>
                             <td><a href="{{ route('impuestos.edit', $impuesto) }}" class="btn btn-primary">Editar</a></td>

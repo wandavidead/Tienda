@@ -37,8 +37,16 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
-        $proveedor = new Proveedor($input);
+        $validated = $request->validate([
+            'nombre_Fiscal' => 'required|max:150|min:3',
+            'cif' => 'required|unique:proveedores|cif|max:11|min:',
+            /* 'dni' => 'required|unique:proveedores|dni|max:11|min:9', */
+            'direccion' => 'max:150',
+            'codigo_postal' => 'spanish_postal_code|max:6',
+            'provincia' => 'max:45',
+            'municipio' => 'max:45',
+        ]);
+        $proveedor = new Proveedor($validated);
         $proveedor->save();
 
         return redirect()->route('proveedores.index');
@@ -75,12 +83,20 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, Proveedor $proveedor)
     {
-        $proveedor->nombre_Fiscal = $request->nombre_Fiscal;
-        $proveedor->cif = $request->cif;
-        $proveedor->direccion = $request->direccion;
-        $proveedor->codigo_postal = $request->codigo_postal;
-        $proveedor->provincia = $request->provincia;
-        $proveedor->municipio = $request->municipio;
+        $validated = $request->validate([
+            'nombre_Fiscal' => 'required|unique:proveedores|max:150|min:3',
+            'cif' => 'required|unique:proveedores|cif|max:11|min:9',
+            'direccion' => 'max:150|min:5',
+            'codigo_postal' => 'spanish_postal_code|max:6|min:5',
+            'provincia' => 'max:45|min:5',
+            'municipio' => 'max:45|min:5',
+        ]);
+        $proveedor->nombre_Fiscal = $validated['nombre_Fiscal'];
+        $proveedor->cif = $validated['cif'];
+        $proveedor->direccion = $validated['direccion'];
+        $proveedor->codigo_postal = $validated['codigo_postal'];
+        $proveedor->provincia = $validated['provincia'];
+        $proveedor->municipio = $validated['municipio'];
         $proveedor->save();
         return redirect()->route('proveedores.index');
     }

@@ -37,8 +37,10 @@ class PagoController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
-        $pago = new Pago($input);
+        $validated = $request->validate([
+            'nombre' => 'required|unique:impuestos|max:45|min:3',
+        ]);
+        $pago = new Pago($validated);
         $pago->save();
 
         return redirect()->route('pagos.index');
@@ -75,7 +77,10 @@ class PagoController extends Controller
      */
     public function update(Request $request, Pago $pago)
     {
-        $pago->nombre = $request->nombre;
+        $validated = $request->validate([
+            'nombre' => 'required|unique:pagos|max:45|min:3',
+        ]);
+        $pago->nombre = $validated['nombre'];
         $pago->save();
         return redirect()->route('pagos.index');
     }

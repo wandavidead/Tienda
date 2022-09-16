@@ -44,8 +44,14 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nombre' => 'required|max:45|min:3',
+            'cantidad' => 'required|integer',
+            'precio' => 'required',
+            'descripcion' => 'max:255',
+        ]);
         $array = $request->only('subcategorias');
-        $input = $request->except('subcategorias_id');
+        $validated = $request->except('subcategorias_id');
         $impuesto = $request->impuesto;
         $precio = $request->precio;
 
@@ -55,11 +61,11 @@ class ProductoController extends Controller
             $precio_impuesto = $precio;
         }
 
-        $input += array(
+        $validated += array(
             "precio_impuesto" => $precio_impuesto
         );
 
-        $producto = new Producto($input);
+        $producto = new Producto($validated);
         $producto->save();
 
         if ($array) {
@@ -102,6 +108,13 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
+        $validated = $request->validate([
+            'nombre' => 'required|max:45|min:3',
+            'cantidad' => 'required|integer',
+            'precio' => 'required',
+            'descripcion' => 'max:255',
+        ]);
+
         $impuesto = $request->impuesto;
         $precio = $request->precio;
 
@@ -111,10 +124,10 @@ class ProductoController extends Controller
             $precio_impuesto = $precio;
         }
         $array = $request->only('subcategorias');
-        $producto->nombre = $request->nombre;
-        $producto->cantidad = $request->cantidad;
-        $producto->precio = $request->precio;
-        $producto->descripcion = $request->descripcion;
+        $producto->nombre = $validated['nombre'];
+        $producto->cantidad = $validated['cantidad'];
+        $producto->precio = $validated['precio'];
+        $producto->descripcion = $validated['descripcion'];
         $producto->impuesto = $request->impuesto;
         $producto->precio_impuesto = $precio_impuesto;
         $producto->proveedor_id = $request->proveedor_id;

@@ -37,8 +37,11 @@ class ImpuestoController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
-        $impuesto = new Impuesto($input);
+        $validated = $request->validate([
+            'nombre' => 'required|unique:impuestos|max:45|min:3',
+            'valor' => 'required',
+        ]);
+        $impuesto = new Impuesto($validated);
         $impuesto->save();
 
         return redirect()->route('impuestos.index');
@@ -75,8 +78,12 @@ class ImpuestoController extends Controller
      */
     public function update(Request $request, Impuesto $impuesto)
     {
-        $impuesto->nombre = $request->nombre;
-        $impuesto->valor = $request->valor;
+        $validated = $request->validate([
+            'nombre' => 'required|unique:impuestos|max:45|min:3',
+            'valor' => 'required',
+        ]);
+        $impuesto->nombre = $validated['nombre'];
+        $impuesto->valor = $validated['valor'];
         $impuesto->save();
         return redirect()->route('impuestos.index');
     }
