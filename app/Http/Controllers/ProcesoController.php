@@ -14,7 +14,7 @@ class ProcesoController extends Controller
      */
     public function index()
     {
-        $procesos = Proceso::all();
+        $procesos = Proceso::paginate(9);
         return view('admin.procesos.index',compact('procesos'));
     }
 

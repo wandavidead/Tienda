@@ -10,7 +10,7 @@
             <a href="{{ route('subcategorias.create') }}" class="btn btn-primary">NUEVO SUBCATEGORIA</a>
         </div>
         <div class="card-body">
-            <table id="subcategorias" class="table table-striped">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>NOMBRE</th>
@@ -43,36 +43,11 @@
                 </tbody>
                 </thead>
             </table>
+            {!! $subcategorias->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 @stop
 
 @section('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $(document).ready(function() {
-            $('#subcategorias').DataTable();
-        });
-    </script>
-    {{-- <script>
-        $('#DeleteBtn').click(function(e) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                }
-            })
-        });
-    </script> --}}
+
 @stop

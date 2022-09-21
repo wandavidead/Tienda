@@ -5,91 +5,195 @@
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            <a href="{{ route('productos.index') }}" class="btn btn-primary">VOLVER</a>
+    <div>
+        {{-- Inicio de la primera fila --}}
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ route('productos.index') }}" class="btn btn-primary">VOLVER</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        {{-- Primera fila --}}
-        <div class="card-body">
-            <form action="{{ route('productos.store') }}" method="POST">
-                @csrf
-                <div class="row">
-                    {{-- input de nombre de producto con select2 --}}
-                    <x-adminlte-input name="nombre" label="Nombre" placeholder="Nombre" label-class="text-lightblue"
-                        fgroup-class="col-md-5" type="text">
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text">
-                                <i class="fas fa-user text-lightblue"></i>
+
+        {{-- Inicio del formulario --}}
+        <form action="{{ route('productos.store') }}" method="POST">
+            @csrf
+
+            {{-- Inicio de la segunda fila --}}
+            <div class="row">
+                {{-- Primera columna --}}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            {{-- Label y input de nombre de producto con select2 --}}
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-lightblue">Nombre</label>
+                                <div class="col-sm-8">
+                                    <x-adminlte-input name="nombre" placeholder="Nombre" fgroup-class="col-md-12"
+                                        type="text">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-user text-lightblue"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
                             </div>
-                        </x-slot>
-                    </x-adminlte-input>
-                    {{-- input de cantidad en numero con select2 --}}
-                    <x-adminlte-input type="number" min="0" name="cantidad" label="Cantidad" placeholder="Cantidad"
-                        label-class="text-lightblue" type="cantidad" fgroup-class="col-md-2">
-                    </x-adminlte-input>
-                    <x-adminlte-input type="number" step="any" min="0" name="precio" label="Precio"
-                        placeholder="Precio" label-class="text-lightblue" fgroup-class="col-md-2">
-                    </x-adminlte-input>
+                            {{-- input del PLU de producto con select2 --}}
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label text-lightblue">Codigo PLU</label>
+                                <div class="col-sm-8">
+                                    <x-adminlte-input name="plu" placeholder="Codigo PLU" fgroup-class="col-md-12"
+                                        type="text">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-user text-lightblue"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                            {{-- Seleccion multiple de subcategorias con select2 --}}
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label text-lightblue">Subcategorias</label>
+                                <div class="col-sm-8">
+                                    <x-adminlte-select class="js-example-basic-multiple" name="subcategorias[]"
+                                        fgroup-class="col-md-12" label-class="text-lightblue" multiple="multiple">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text bg-gradient-info">
+                                                <i class="fas fa-fw fa-people-arrows"></i>
+                                            </div>
+                                        </x-slot>
+                                        @foreach ($subcategorias as $subcategoria)
+                                            <option value="{{ $subcategoria->id }}">
+                                                {{ $subcategoria->nombre }}</option>
+                                        @endforeach
+                                    </x-adminlte-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {{-- Segunda fila --}}
-                <div class="row">
-                    {{-- Seleccion de impuestos con select2 --}}
-                    <x-adminlte-select2 name="impuesto" label="Impuestos" fgroup-class="col-md-4"
-                        label-class="text-lightblue" data-placeholder="Selecciona un impuesto">
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text bg-gradient-info">
-                                <i class="fas fa-fw fa-percent"></i>
+                {{-- Segunda columna --}}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-body">
+                                {{-- {{-- Area de texto de descripcion del producto con select2 --}}
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-lightblue">Descripción</label>
+                                    <div class="col-sm-8">
+                                        <x-adminlte-textarea name="descripcion" rows=5 fgroup-class="col-md-12"
+                                            label-class="text-lightblue" igroup-size="sm"
+                                            placeholder="Inserte descripción...">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text bg-dark">
+                                                    <i class="fas fa-lg fa-file-alt text-lightblue"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-textarea>
+                                    </div>
+                                </div>
                             </div>
-                        </x-slot>
-                        <option value="" selected>Selecciona un impuesto</option>
-                        @foreach ($impuestos as $impuesto)
-                            <option value="{{ $impuesto->valor }}">
-                                {{ $impuesto->nombre }} - {{ $impuesto->valor }}%</option>
-                        @endforeach
-                    </x-adminlte-select2>
-                    {{-- Seleccion de proveedor con select2 --}}
-                    <x-adminlte-select2 name="proveedor_id" label="Proveedor" fgroup-class="col-md-4"
-                        label-class="text-lightblue" data-placeholder="Selecciona un proveedor">
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text bg-gradient-info">
-                                <i class="fas fa-fw fa-people-arrows"></i>
-                            </div>
-                        </x-slot>
-                        <option value="" selected>Selecciona a un proveedor</option>
-                        @foreach ($proveedores as $proveedor)
-                            <option value="{{ $proveedor->id }}">
-                                {{ $proveedor->nombre_Fiscal }}</option>
-                        @endforeach
-                    </x-adminlte-select2>
+                        </div>
+                    </div>
                 </div>
-                {{-- Tercera fila --}}
-                <div class="row">
-                    {{-- Area de texto de descripcion del producto con select2 --}}
-                    <x-adminlte-textarea name="descripcion" label="Descripcion del Producto" rows=4 fgroup-class="col-md-6"
-                        label-class="text-lightblue" igroup-size="sm" placeholder="Inserte descripcion...">
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text bg-dark">
-                                <i class="fas fa-lg fa-file-alt text-lightblue"></i>
+            </div>
+
+            {{-- Inicio de la Tercera fila --}}
+            <div class="row">
+
+                {{-- Primera columna --}}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            {{-- Label y input de nombre de producto con select2 --}}
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-lightblue">Cantidad</label>
+                                <div class="col-sm-8">
+                                    <x-adminlte-input type="number" min="0" name="cantidad" placeholder="Cantidad"
+                                        label-class="text-lightblue" type="cantidad" fgroup-class="col-md-12">
+                                    </x-adminlte-input>
+                                </div>
                             </div>
-                        </x-slot>
-                    </x-adminlte-textarea>
-                    {{-- Seleccion multiple de subcategorias con select2 --}}
-                    <x-adminlte-select class="js-example-basic-multiple" name="subcategorias[]" label="Subcategorias"
-                        fgroup-class="col-md-4" label-class="text-lightblue" multiple="multiple">
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text bg-gradient-info">
-                                <i class="fas fa-fw fa-people-arrows"></i>
+                            {{-- input del PLU de producto con select2 --}}
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label text-lightblue">Precio</label>
+                                <div class="col-sm-8">
+                                    <x-adminlte-input type="number" step="any" min="0" name="precio"
+                                        placeholder="Precio" label-class="text-lightblue" fgroup-class="col-md-12">
+                                    </x-adminlte-input>
+                                </div>
                             </div>
-                        </x-slot>
-                        @foreach ($subcategorias as $subcategoria)
-                            <option value="{{ $subcategoria->id }}">
-                                {{ $subcategoria->nombre }}</option>
-                        @endforeach
-                    </x-adminlte-select>
+                            {{-- input del PLU de producto con select2 --}}
+                            <div class="row">
+                                <label class="col-sm-4 col-form-label text-lightblue">Impuestos</label>
+                                <div class="col-sm-8">
+                                    {{-- Seleccion de impuestos con select2 --}}
+                                    <x-adminlte-select2 name="impuesto" fgroup-class="col-md-10"
+                                        label-class="text-lightblue" data-placeholder="Selecciona un impuesto">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text bg-gradient-info">
+                                                <i class="fas fa-fw fa-percent"></i>
+                                            </div>
+                                        </x-slot>
+                                        <option value="" selected>Selecciona un impuesto</option>
+                                        @foreach ($impuestos as $impuesto)
+                                            <option value="{{ $impuesto->valor }}">
+                                                {{ $impuesto->nombre }} - {{ $impuesto->valor }}%</option>
+                                        @endforeach
+                                    </x-adminlte-select2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-success float-right">GUARDAR</button>
-            </form>
-        </div>
+
+                {{-- Segunda columna --}}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-body">
+                                {{-- Seleccion de proveedor con select2 --}}
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-lightblue">Proveedor</label>
+                                    <div class="col-sm-8">
+                                        <x-adminlte-select2 name="proveedor_id" fgroup-class="col-md-12"
+                                            label-class="text-lightblue" data-placeholder="Selecciona un proveedor">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text bg-gradient-info">
+                                                    <i class="fas fa-fw fa-people-arrows"></i>
+                                                </div>
+                                            </x-slot>
+                                            <option value="" selected>Selecciona a un proveedor</option>
+                                            @foreach ($proveedores as $proveedor)
+                                                <option value="{{ $proveedor->id }}">
+                                                    {{ $proveedor->nombre_Fiscal }}</option>
+                                            @endforeach
+                                        </x-adminlte-select2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Parte dinal botones aceptar y cancelar --}}
+            <div class="form-group row">
+                <div class="col">
+                    <div class="card ">
+                        <div class="card-body text-center ">
+                            <button type="submit" class="btn btn-danger mr-5"><a href="{{ route('productos.index') }}"
+                                    style="color: inherit;"> CANCELAR </a> </button>
+                            <button type="submit" class="btn btn-success ml-5">GUARDAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 @stop
 
@@ -100,3 +204,5 @@
         });
     </script>
 @stop
+
+

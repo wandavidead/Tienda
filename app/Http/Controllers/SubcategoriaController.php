@@ -15,7 +15,7 @@ class SubcategoriaController extends Controller
      */
     public function index()
     {
-        $subcategorias = Subcategoria::all();
+        $subcategorias = Subcategoria::paginate(9);
         return view('admin.subcategorias.index', compact('subcategorias'));
     }
 
@@ -41,8 +41,9 @@ class SubcategoriaController extends Controller
     {
         $validated = $request->validate([
             'nombre' => 'required|max:45|min:3',
+            'categoria_id' => 'max:45'
         ]);
-        $subcategoria = new Subcategoria($validated );
+        $subcategoria = new Subcategoria($validated);
         $subcategoria->save();
         return redirect()->route('subcategorias.index');
     }

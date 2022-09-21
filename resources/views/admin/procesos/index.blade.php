@@ -10,7 +10,7 @@
             <a href="{{ route('procesos.create') }}" class="btn btn-primary">NUEVO PROCESO</a>
         </div>
         <div class="card-body">
-            <table id="procesos" class="table table-striped">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -36,14 +36,10 @@
                 </tbody>
                 </thead>
             </table>
+            {!! $procesos->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 @stop
 
 @section('js')
-    <script>
-        $(document).ready(function() {
-            $('#procesos').DataTable();
-        });
-    </script>
 @stop

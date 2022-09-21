@@ -146,13 +146,13 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => true,
+    'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => true,
+    'sidebar_collapse_remember_no_transition' => false,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
-    'sidebar_nav_accordion' => true,
+    'sidebar_nav_accordion' => false,
     'sidebar_nav_animation_speed' => 300,
 
     /*
@@ -247,55 +247,49 @@ return [
             'icon'        => 'fas fa-home',
         ],
         [
-            'text'    => 'pages',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Categoría',
-                    'route'  => 'categorias.index',
-                    'icon'    => 'fas fa-fw fa-cube',
-                ],
-                [
-                    'text' => 'Subcategoría',
-                    'route'  => 'subcategorias.index',
-                    'icon'    => 'fas fa-fw fa-sitemap',
-                ],
-                [
-                    'text' => 'Productos',
-                    'route'  => 'productos.index',
-                    'icon'    => 'fas fa-fw fa-box',
-                ],
-                [
-                    'text' => 'Proveedores',
-                    'route'  => 'proveedores.index',
-                    'icon'    => 'fas fa-fw fa-people-arrows',
-                ],
-                [
-                    'text' => 'Pedidos Pendientes',
-                    'route'  => 'pedidos.index',
-                    'icon'    => 'fas fa-fw fa-boxes',
-                ],
-                [
-                    'text' => 'Impuestos',
-                    'route'  => 'impuestos.index',
-                    'icon'    => 'fas fa-fw fa-percent',
-                ],
-                [
-                    'text' => 'Proceso de pedidos',
-                    'route'  => 'procesos.index',
-                    'icon'    => 'fas fa-fw fa-dolly',
-                ],
-                [
-                    'text' => 'Pagos',
-                    'route'  => 'pagos.index',
-                    'icon'    => 'fas fa-money-bill-wave',
-                ],
-                [
-                    'text' => 'Usuarios',
-                    'route'  => 'users.index',
-                    'icon'    => 'fas fa-users',
-                ],
-            ],
+            'text' => 'Categoría',
+            'route'  => 'categorias.index',
+            'icon'    => 'fas fa-fw fa-cube',
+        ],
+        [
+            'text' => 'Subcategoría',
+            'route'  => 'subcategorias.index',
+            'icon'    => 'fas fa-fw fa-sitemap',
+        ],
+        [
+            'text' => 'Productos',
+            'route'  => 'productos.index',
+            'icon'    => 'fas fa-fw fa-box',
+        ],
+        [
+            'text' => 'Proveedores',
+            'route'  => 'proveedores.index',
+            'icon'    => 'fas fa-fw fa-people-arrows',
+        ],
+        [
+            'text' => 'Pedidos Pendientes',
+            'route'  => 'pedidos.index',
+            'icon'    => 'fas fa-fw fa-boxes',
+        ],
+        [
+            'text' => 'Impuestos',
+            'route'  => 'impuestos.index',
+            'icon'    => 'fas fa-fw fa-percent',
+        ],
+        [
+            'text' => 'Proceso de pedidos',
+            'route'  => 'procesos.index',
+            'icon'    => 'fas fa-fw fa-dolly',
+        ],
+        [
+            'text' => 'Pagos',
+            'route'  => 'pagos.index',
+            'icon'    => 'fas fa-money-bill-wave',
+        ],
+        [
+            'text' => 'Usuarios',
+            'route'  => 'users.index',
+            'icon'    => 'fas fa-users',
         ],
         ['header' => 'account_settings'],
         [
@@ -308,7 +302,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        
+
     ],
 
     /*

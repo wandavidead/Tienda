@@ -14,7 +14,7 @@ class PagoController extends Controller
      */
     public function index()
     {
-        $pagos = Pago::all();
+        $pagos = Pago::paginate(9);
         return view('admin.pagos.index',compact('pagos'));
     }
 

@@ -10,7 +10,7 @@
             <a href="{{ route('productos.create') }}" class="btn btn-primary">NUEVO PRODUCTO</a>
         </div>
         <div class="card-body">
-            <table id="productos" class="table table-striped">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -20,6 +20,7 @@
                         <th>IMPUESTO</th>
                         <th>PRECIO CON IMPUESTO</th>
                         <th>PROVEEDOR</th>
+                        <th>VER</th>
                         <th>EDITAR</th>
                         <th>ELIMINAR</th>
                     </tr>
@@ -27,31 +28,32 @@
                     @foreach ($productos as $producto)
                         <tr>
                             <td>{{ $producto->id }}</td>
-                            <td><a href="{{ route('productos.show', $producto) }}">{{ $producto->nombre }}</a></td>
+                            <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->cantidad }}</td>
-                            <td>{{ $producto->precio }}</td>
+                            <td class="text-center">{{ $producto->precio }}€</td>
                             @if (is_null($producto->impuesto))
                                 <td>
                                     No tiene Impuesto
                                 </td>
                             @else
-                            <td>{{ $producto->impuesto }}%</td>
+                                <td>{{ $producto->impuesto }}%</td>
                             @endif
                             @if (is_null($producto->precio_impuesto))
-                                <td>
+                                <td class="text-center">
                                     No se puede calcular
                                 </td>
                             @else
-                            <td>{{ $producto->precio_impuesto }}</td>
+                                <td class="text-center">{{ $producto->precio_impuesto }}€</td>
                             @endif
                             @if (is_null($producto->proveedor))
                                 <td>
                                     No tiene Proveedor
                                 </td>
                             @else
-                            <td>{{ $producto->proveedor->nombre_Fiscal }}</td>
+                                <td>{{ $producto->proveedor->nombre_Fiscal }}</td>
                             @endif
-                            <td><a href="{{ route('productos.edit', $producto) }}" class="btn btn-primary">Editar</a></td>
+                            <td><a href="{{ route('productos.show', $producto) }}" class="btn btn-primary">Ver</a></td>
+                            <td><a href="{{ route('productos.edit', $producto) }}" class="btn btn-success">Editar</a></td>
                             <td>
                                 <form action="{{ route('productos.destroy', $producto) }}" method="POST">
                                     @method('delete')
@@ -64,36 +66,10 @@
                 </tbody>
                 </thead>
             </table>
+            {!! $productos->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 @stop
 
 @section('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $(document).ready(function() {
-            $('#productos').DataTable();
-        });
-    </script>
-    {{-- <script>
-        $('#DeleteBtn').click(function(e) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                }
-            })
-        });
-    </script> --}}
 @stop

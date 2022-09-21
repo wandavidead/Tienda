@@ -18,7 +18,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
+        $productos = Producto::paginate(9);
         return view('admin.productos.index', compact('productos'));
     }
 
@@ -82,7 +82,16 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        return view('admin.productos.show', compact('producto'));
+        $subcategorias = $producto->subcategorias;
+        if (empty($subcategorias == false) ) {
+            $subcategoria = $subcategorias[0];
+            $categoria = $subcategoria->categoria;
+        }else {
+            $subcategorias= null;
+            $categoria= null;
+        }
+        
+        return view('admin.productos.show', compact('producto', 'subcategorias','categoria'));
     }
 
     /**
@@ -96,7 +105,7 @@ class ProductoController extends Controller
         $impuestos = Impuesto::all();
         $proveedores = Proveedor::all();
         $subcategorias = Subcategoria::all();
-        return view('admin.productos.edit', compact('producto', 'impuestos', 'proveedores','subcategorias'));
+        return view('admin.productos.edit', compact('producto', 'impuestos', 'proveedores', 'subcategorias'));
     }
 
     /**
