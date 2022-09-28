@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1>Pagina de crear producto</h1>
+    <h1>NUEVO PRODUCTO</h1>
 @stop
 
 @section('content')
@@ -20,7 +20,6 @@
         {{-- Inicio del formulario --}}
         <form action="{{ route('productos.store') }}" method="POST">
             @csrf
-
             {{-- Inicio de la segunda fila --}}
             <div class="row">
                 {{-- Primera columna --}}
@@ -80,31 +79,26 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-body">
-                                {{-- {{-- Area de texto de descripcion del producto con select2 --}}
-                                <div class="form-group row">
-                                    <label class="col-md-4 col-form-label text-lightblue">Descripción</label>
-                                    <div class="col-sm-8">
-                                        <x-adminlte-textarea name="descripcion" rows=5 fgroup-class="col-md-12"
-                                            label-class="text-lightblue" igroup-size="sm"
-                                            placeholder="Inserte descripción...">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text bg-dark">
-                                                    <i class="fas fa-lg fa-file-alt text-lightblue"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-textarea>
-                                    </div>
+                            {{-- {{-- Area de texto de descripcion del producto con select2 --}}
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-lightblue">Descripción</label>
+                                <div class="col-sm-8">
+                                    <x-adminlte-textarea name="descripcion" rows=5 fgroup-class="col-md-12"
+                                        label-class="text-lightblue" igroup-size="sm" placeholder="Inserte descripción...">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text bg-dark">
+                                                <i class="fas fa-lg fa-file-alt text-lightblue"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             {{-- Inicio de la Tercera fila --}}
             <div class="row">
-
                 {{-- Primera columna --}}
                 <div class="col">
                     <div class="card">
@@ -150,7 +144,6 @@
                         </div>
                     </div>
                 </div>
-
                 {{-- Segunda columna --}}
                 <div class="col">
                     <div class="card">
@@ -180,14 +173,14 @@
                     </div>
                 </div>
             </div>
-
             {{-- Parte dinal botones aceptar y cancelar --}}
             <div class="form-group row">
                 <div class="col">
-                    <div class="card ">
-                        <div class="card-body text-center ">
-                            <button type="submit" class="btn btn-danger mr-5"><a href="{{ route('productos.index') }}"
-                                    style="color: inherit;"> CANCELAR </a> </button>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <a href="{{ route('productos.index') }}" class="btn btn-danger mr-5" style="color: inherit;">
+                                CANCELAR
+                            </a>
                             <button type="submit" class="btn btn-success ml-5">GUARDAR</button>
                         </div>
                     </div>
@@ -204,5 +197,3 @@
         });
     </script>
 @stop
-
-
