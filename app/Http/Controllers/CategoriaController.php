@@ -15,7 +15,7 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::paginate(9);
-        return view('admin.categorias.index',compact('categorias'));
+        return view('admin.categorias.index', compact('categorias'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoriaController extends Controller
     public function create()
     {
         $categorias = new Categoria();
-        return view('admin.categorias.create',compact('categorias'));
+        return view('admin.categorias.create', compact('categorias'));
     }
 
     /**
@@ -54,7 +54,11 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+        $subcategorias = $categoria->subcategoria;
+        if (empty($subcategorias == true)) {
+            $subcategorias = null;
+        }
+        return view('admin.categorias.show', compact('categoria', 'subcategorias'));
     }
 
     /**
@@ -80,7 +84,7 @@ class CategoriaController extends Controller
         $validated = $request->validate([
             'nombre' => 'required|unique:categorias|max:45|min:3',
         ]);
-        
+
         $categoria->nombre = $validated['nombre'];
         $categoria->save();
         return redirect()->route('categorias.index');

@@ -11,12 +11,12 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('categorias.index') }}" class="btn btn-primary">VOLVER</a>
+                        <a href="{{ route('categorias.index') }}" class="btn btn-primary"><i class="fas fa-backward fa-2x"></i></a></a>
                     </div>
                 </div>
             </div>
         </div>
-        <form action="{{ route('categorias.update', $producto) }}" method="post">
+        <form action="{{ route('categorias.update', $categoria) }}" method="post">
             @csrf
             @method('put')
 
@@ -26,12 +26,12 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            {{-- Label y input de nombre de producto con select2 --}}
+                            {{-- Label y input de nombre de categoria con select2 --}}
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-lightblue">Nombre</label>
                                 <div class="col-sm-8">
                                     <x-adminlte-input name="nombre" placeholder="Nombre" fgroup-class="col-md-12"
-                                        type="text" value="{{ $producto->nombre }}">
+                                        type="text" value="{{ $categoria->nombre }}">
                                         <x-slot name="prependSlot">
                                             <div class="input-group-text">
                                                 <i class="fas fa-user text-lightblue"></i>
@@ -49,10 +49,11 @@
             {{-- Parte dinal botones aceptar y cancelar --}}
             <div class="form-group row">
                 <div class="col">
-                    <div class="card ">
-                        <div class="card-body text-center ">
-                            <button type="submit" class="btn btn-danger mr-5"><a href="{{ route('categorias.index') }}"
-                                    style="color: inherit;"> CANCELAR </a> </button>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <a href="{{ route('categorias.index') }}" class="btn btn-danger mr-5" style="color: inherit;">
+                                CANCELAR
+                            </a>
                             <button type="submit" class="btn btn-success ml-5">GUARDAR</button>
                         </div>
                     </div>

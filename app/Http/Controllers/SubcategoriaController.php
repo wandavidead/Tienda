@@ -56,7 +56,12 @@ class SubcategoriaController extends Controller
      */
     public function show(Subcategoria $subcategoria)
     {
-        //
+        $productos = $subcategoria->productos;
+        /* dd($productos); */
+        if (count($productos) === 0) {
+            $productos = null;
+        }
+        return view('admin.subcategorias.show', compact('subcategoria', 'productos'));
     }
 
     /**

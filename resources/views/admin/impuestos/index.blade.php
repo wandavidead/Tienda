@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('impuestos.create') }}" class="btn btn-primary">NUEVO IMPUESTO</a>
+            <a href="{{ route('impuestos.create') }}" class="btn btn-primary"><i class="fas fa-plus-square fa-1x"></i> NUEVO IMPUESTO</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">
@@ -23,12 +23,12 @@
                         <tr>
                             <td>{{ $impuesto->nombre }}</td>
                             <td>{{ $impuesto->valor }}%</td>
-                            <td><a href="{{ route('impuestos.edit', $impuesto) }}" class="btn btn-primary">Editar</a></td>
+                            <td><a href="{{ route('impuestos.edit', $impuesto) }}" class="btn btn-primary"><i class="fas fa-edit fa-2x"></i></a></td>
                             <td>
                                 <form action="{{ route('impuestos.destroy', $impuesto) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td>
                         </tr>

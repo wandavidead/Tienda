@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('subcategorias.create') }}" class="btn btn-primary">NUEVO SUBCATEGORIA</a>
+            <a href="{{ route('subcategorias.create') }}" class="btn btn-primary"><i class="fas fa-plus-square fa-1x"></i> NUEVA SUBCATEGORIA</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">
@@ -15,6 +15,7 @@
                     <tr>
                         <th>NOMBRE</th>
                         <th>CATEGORIA</th>
+                        <th>VER</th>
                         <th>EDITAR</th>
                         <th>ELIMINAR</th>
                     </tr>
@@ -29,13 +30,14 @@
                             @else
                                 <td>{{ $subcategoria->categoria->nombre }}</td>
                             @endif
-                            <td><a href="{{ route('subcategorias.edit', $subcategoria) }}" class="btn btn-primary">Editar</a>
+                            <td><a href="{{ route('subcategorias.show', $subcategoria) }}" class="btn btn-success "><i class="far fa-eye fa-2x"></i></a></td>
+                            <td><a href="{{ route('subcategorias.edit', $subcategoria) }}" class="btn btn-primary"><i class="fas fa-edit fa-2x"></i></a>
                             </td>
                             <td>
                                 <form action="{{ route('subcategorias.destroy', $subcategoria) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td>
                         </tr>

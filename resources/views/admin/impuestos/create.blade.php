@@ -11,7 +11,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('impuestos.index') }}" class="btn btn-primary">VOLVER</a>
+                        <a href="{{ route('impuestos.index') }}" class="btn btn-primary"><i class="fas fa-backward fa-2x"></i></a></a>
                     </div>
                 </div>
             </div>
@@ -40,12 +40,20 @@
                                     </x-adminlte-input>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Segunda columna --}}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            {{-- {{-- Area de texto de descripcion del subcategoria con select2 --}}
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-lightblue">Porcentaje</label>
                                 <div class="col-sm-8">
                                     {{-- input de porcentaje en numero con select2 --}}
                                     <x-adminlte-input type="number" step="any" min="0" name="valor"
-                                        placeholder="Porcentaje" label-class="text-lightblue" fgroup-class="col-md-2">
+                                        placeholder="Porcentaje" label-class="text-lightblue" fgroup-class="col-md-12">
                                     </x-adminlte-input>
                                 </div>
                             </div>
@@ -53,13 +61,13 @@
                     </div>
                 </div>
             </div>
-
             {{-- Parte dinal botones aceptar y cancelar --}}
             <div class="form-group row">
                 <div class="col">
                     <div class="card">
                         <div class="card-body text-center">
-                            <a href="{{ route('impuestos.index') }}" class="btn btn-danger mr-5" style="color: inherit;"> CANCELAR
+                            <a href="{{ route('impuestos.index') }}" class="btn btn-danger mr-5" style="color: inherit;">
+                                CANCELAR
                             </a>
                             <button type="submit" class="btn btn-success ml-5">GUARDAR</button>
                         </div>

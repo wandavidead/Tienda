@@ -57,3 +57,4 @@ Route::resource('adminpanel/proveedores', ProveedorController::class);
 Route::resource('adminpanel/procesos', ProcesoController::class);
 Route::resource('adminpanel/subcategorias', SubcategoriaController::class);
 Route::resource('adminpanel/users', UserController::class);
+

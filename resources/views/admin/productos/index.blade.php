@@ -7,13 +7,13 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('productos.create') }}" class="btn btn-primary">NUEVO PRODUCTO</a>
+            <a href="{{ route('productos.create') }}" class="btn btn-primary"><i class="fas fa-plus-square fa-1x"></i> NUEVO
+                PRODUCTO</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>NOMBRE</th>
                         <th>CANTIDAD</th>
                         <th>PRECIO</th>
@@ -27,7 +27,6 @@
                 <tbody>
                     @foreach ($productos as $producto)
                         <tr>
-                            <td>{{ $producto->id }}</td>
                             <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->cantidad }}</td>
                             <td class="text-center">{{ $producto->precio }}€</td>
@@ -52,13 +51,16 @@
                             @else
                                 <td>{{ $producto->proveedor->nombre_Fiscal }}</td>
                             @endif
-                            <td><a href="{{ route('productos.show', $producto) }}" class="btn btn-primary">Ver</a></td>
-                            <td><a href="{{ route('productos.edit', $producto) }}" class="btn btn-success">Editar</a></td>
+                            <td><a href="{{ route('productos.show', $producto) }}" class="btn btn-success "><i
+                                        class="far fa-eye fa-2x"></i></a></td>
+                            <td><a href="{{ route('productos.edit', $producto) }}" class="btn btn-primary"><i
+                                        class="fas fa-edit fa-2x"></i></a></td>
                             <td>
                                 <form action="{{ route('productos.destroy', $producto) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i
+                                            class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td>
                         </tr>

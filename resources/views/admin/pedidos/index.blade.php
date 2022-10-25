@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
 {{--         <div class="card-header">
-            <a href="{{ route('pedidos.create') }}" class="btn btn-primary">NUEVO PEDIDO</a>
+            <a href="{{ route('pedidos.create') }}" class="btn btn-primary"><i class="fas fa-plus-square fa-1x"></i> NUEVO PEDIDO</a>
         </div> --}}
         <div class="card-body">
             <table id="pedidos" class="table table-striped">
@@ -37,12 +37,12 @@
                             <td>{{ $pedido->pago }}</td>
                             <td>{{ $pedido->proceso }}</td>
                             <td>{{ $pedido->user->usuario }}</td>
-{{--                             <td><a href="{{ route('pedidos.edit', $pedido) }}" class="btn btn-primary">Editar</a></td>
+{{--                             <td><a href="{{ route('pedidos.edit', $pedido) }}" class="btn btn-primary"><i class="fas fa-edit fa-2x"></i></a></td>
                             <td>
                                 <form action="{{ route('pedidos.destroy', $pedido) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td> --}}
                         </tr>

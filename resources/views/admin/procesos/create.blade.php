@@ -11,7 +11,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('procesos.index') }}" class="btn btn-primary">VOLVER</a>
+                        <a href="{{ route('procesos.index') }}" class="btn btn-primary"><i class="fas fa-backward fa-2x"></i></a></a>
                     </div>
                 </div>
             </div>

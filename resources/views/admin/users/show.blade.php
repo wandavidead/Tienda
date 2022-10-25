@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('productos.index') }}" class="btn btn-primary">VOLVER</a>
+            <a href="{{ route('productos.index') }}" class="btn btn-primary"><i class="fas fa-backward fa-2x"></i></a></a>
         </div>
         <div class="card-header">
             <a href="{{ route('productos.edit', $producto) }}" class="btn btn-primary">EDITAR PRODUCTO</a>
@@ -36,7 +36,7 @@
                                 <form action="{{ route('productos.destroy', $producto) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td>
                         </tr>

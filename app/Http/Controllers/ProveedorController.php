@@ -60,7 +60,11 @@ class ProveedorController extends Controller
      */
     public function show(Proveedor $proveedor)
     {
-        //
+        $productos = $proveedor->producto;
+        if (empty($productos == true) ) {
+            $productos= null;
+        }
+        return view('admin.proveedores.show', compact('proveedor', 'productos'));
     }
 
     /**

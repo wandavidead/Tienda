@@ -7,13 +7,13 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('procesos.create') }}" class="btn btn-primary">NUEVO PROCESO</a>
+            <a href="{{ route('procesos.create') }}" class="btn btn-primary"><i class="fas fa-plus-square fa-1x"></i> NUEVO
+                PROCESO</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>NOMBRE</th>
                         <th>EDITAR</th>
                         <th>ELIMINAR</th>
@@ -21,14 +21,15 @@
                 <tbody>
                     @foreach ($procesos as $proceso)
                         <tr>
-                            <td>{{ $proceso->id }}</td>
                             <td>{{ $proceso->nombre }}</td>
-                            <td><a href="{{ route('procesos.edit', $proceso->id) }}" class="btn btn-primary">Editar</a></td>
+                            <td><a href="{{ route('procesos.edit', $proceso->id) }}" class="btn btn-primary"><i
+                                        class="fas fa-edit fa-2x"></i></a></td>
                             <td>
                                 <form action="{{ route('procesos.destroy', $proceso) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i
+                                            class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td>
                         </tr>

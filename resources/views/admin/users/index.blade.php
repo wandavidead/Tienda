@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
 {{--         <div class="card-header">
-            <a href="{{ route('users.create') }}" class="btn btn-primary">NUEVO USUARIO</a>
+            <a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fas fa-plus-square fa-1x"></i> NUEVO USUARIO</a>
         </div> --}}
         <div class="card-body">
             <table id="users" class="table table-striped">
@@ -34,12 +34,12 @@
                             @endif
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->nombre }}</td>
-{{--                             <td><a href="{{ route('users.edit', $user) }}" class="btn btn-primary">Editar</a></td>
+{{--                             <td><a href="{{ route('users.edit', $user) }}" class="btn btn-primary"><i class="fas fa-edit fa-2x"></i></a></td>
                             <td>
                                 <form action="{{ route('users.destroy', $user) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td> --}}
                         </tr>

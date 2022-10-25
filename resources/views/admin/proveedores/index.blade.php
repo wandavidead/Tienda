@@ -7,38 +7,42 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('proveedores.create') }}" class="btn btn-primary">NUEVO PROVEEDOR</a>
+            <a href="{{ route('proveedores.create') }}" class="btn btn-primary"><i class="fas fa-plus-square fa-1x"></i> NUEVO
+                PROVEEDOR</a>
         </div>
         <div class="card-body">
             <table id="proveedores" class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>NOMBRE FISCAL</th>
                         <th>CIF</th>
                         <th>DIRECCION</th>
                         <th>CODIGO POSTAL</th>
                         <th>PROVINCIA</th>
                         <th>MUNICIPIO</th>
+                        <th>VER</th>
                         <th>EDITAR</th>
                         <th>ELIMINAR</th>
                     </tr>
                 <tbody>
                     @foreach ($proveedores as $proveedor)
                         <tr>
-                            <td>{{ $proveedor->id }}</td>
-                            <td><a href="{{ route('proveedores.show', $proveedor) }}">{{ $proveedor->nombre_Fiscal }}</a></td>
+                            <td>{{ $proveedor->nombre_Fiscal }}</td>
                             <td>{{ $proveedor->cif }}</td>
                             <td>{{ $proveedor->direccion }}</td>
                             <td>{{ $proveedor->codigo_postal }}</td>
                             <td>{{ $proveedor->provincia }}</td>
                             <td>{{ $proveedor->municipio }}</td>
-                            <td><a href="{{ route('proveedores.edit', $proveedor) }}" class="btn btn-primary">Editar</a></td>
+                            <td><a href="{{ route('proveedores.show', $proveedor) }}" class="btn btn-success "><i
+                                        class="far fa-eye fa-2x"></i></a></td>
+                            <td><a href="{{ route('proveedores.edit', $proveedor) }}" class="btn btn-primary"><i
+                                        class="fas fa-edit fa-2x"></i></a></td>
                             <td>
                                 <form action="{{ route('proveedores.destroy', $proveedor) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i
+                                            class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td>
                         </tr>

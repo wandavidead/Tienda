@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('pagos.create') }}" class="btn btn-primary">NUEVO PAGO</a>
+            <a href="{{ route('pagos.create') }}" class="btn btn-primary"><i class="fas fa-plus-square fa-1x"></i> NUEVO PAGO</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">
@@ -21,12 +21,12 @@
                     @foreach ($pagos as $pago)
                         <tr>
                             <td>{{ $pago->nombre }}</td>
-                            <td><a href="{{ route('pagos.edit', $pago) }}" class="btn btn-primary">Editar</a></td>
+                            <td><a href="{{ route('pagos.edit', $pago) }}" class="btn btn-primary"><i class="fas fa-edit fa-2x"></i></a></td>
                             <td>
                                 <form action="{{ route('pagos.destroy', $pago) }}" method="POST">
                                     @method('delete')
                                     @csrf
-                                    <input id="DeleteBtn" type="submit" value="Eliminar" class="btn btn-danger" />
+                                    <button id="DeleteBtn" type="submit" class="btn btn-danger"><i class="fas fa-minus-square fa-2x"></i></button>
                                 </form>
                             </td>
                         </tr>
